@@ -23,26 +23,19 @@ ketiga atribut bernilai 15, dan kalah jika ketiga atribut bernilai 0
 # $ Import library
 import pandas as pd
 table = pd.read_csv("Transition Table.csv")
- 
-# $ Global Variables
-hyg = 0
-ene = 10
-fun = 0
 
 # $ Fungsi-Fungsi
 def startgame():
-    hygiene = 0
-    energy = 10
-    fun = 0
+    return [0,10,0]
 
 def printState(hygiene,energy,fun):
     print(" /--Condition------\ ")
     if (hygiene<10):
         print(" | Hygiene = " + str(hygiene) + "     | ")
     else:
-        print(" | Hygiene =" + str(hygiene) + "     | ")
+        print(" | Hygiene = " + str(hygiene) + "    | ")
     if (energy<10):
-        print(" | Energy  = " + str(energy) + "    | ")
+        print(" | Energy  = " + str(energy) + "     | ")
     else:
         print(" | Energy  = " + str(energy) + "    | ")
     if (fun<10):
@@ -52,12 +45,22 @@ def printState(hygiene,energy,fun):
     print(" \-----------------/ ")
 
 def menang(hygiene,energy,fun):
-    if
+    return (hygiene == 15) and (energy == 15) and (fun == 15)
     
 def kalah(hygiene,energy,fun):
-    if
+    return (hygiene == 0) and (energy == 0) and (fun == 0)
 
-def readState(hygiene,energy,fun):
+def changeState(condition,awal,akhir):
+    if (awal == akhir):
+        print("Aksi tidak valid!")
+        return condition
+    else:
+        currstate = akhir
+        idx = int(table[table["Current State"]==akhir].index[0])
+        condition[0] = table.at[idx,"Hygiene"]
+        condition[1] = table.at[idx,"Energy"]
+        condition[2] = table.at[idx,"Fun"]
+        return condition
 
 
 
@@ -71,8 +74,19 @@ print("[] ========================================== []")
 print("")
 
 # * Start Game
-startgame()
-printState(hyg,ene,fun)
+cond = startgame()
+currstate = "q8"
+printState(cond[0],cond[1],cond[2])
+print(currstate)
+
+# * Start Loop
+while (not(menang(cond[0],cond[1],cond[2])) or not(kalah(cond[0],cond[1],cond[2]))):
+    print("")
+    aksi = str(input("Masukkan aksi yang akan dilakukan: "))
+    #newstate = readAction(aksi)
+    #changeState(currstate,newstate)
+    cond = changeState(cond,currstate,"q32")
+    printState(cond[0],cond[1],cond[2])
 
  
 #while (not(menang()) and not(kalah())) :
