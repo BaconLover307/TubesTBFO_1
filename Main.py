@@ -20,11 +20,17 @@ Lalu, permainan bekerja dengan cara menginput aksi yang ingin dilakukan
 untuk mengubah atribut-atribut tersebut. Permainan dimenangkan saat
 ketiga atribut bernilai 15, dan kalah jika ketiga atribut bernilai 0
 '''
-# $ Import library
+# $ ====================== Import library ======================
 import pandas as pd
 table = pd.read_csv("Transition Table.csv")
+ 
+# $ ====================== Global Variables ======================
+aksi = ''
+state = ''
+currstate = ''
+newstate = ''
 
-# $ Fungsi-Fungsi
+# $ ====================== Fungsi-Fungsi ======================
 def startgame():
     return [0,10,0]
 
@@ -62,14 +68,22 @@ def changeState(condition,awal,akhir):
         condition[2] = table.at[idx,"Fun"]
         return condition
 
+def readAction(aksi,currstate):
+    try:
+        idx = int(table[table['Current State']==currstate].index[0]) 
+        newstate = table.at[idx, aksi]
+        return newstate
+    except:
+        print("Kamu ngapain mas!? Gabisa ngetik ya?!")
+        return currstate
+    finally:
+        pass
 
-
-# $ MAIN PROGRAM
-
+# $ ====================== MAIN PROGRAM ======================
 # * Welcome
 print("[] ========================================== []")
-print("||   Selamat datang di                        ||")
-print("||             Simulasi Kehidupan Sederhana   ||")
+print("||    Selamat datang di                       ||")
+print("||            Simulasi Kehidupan Sederhana    ||")
 print("[] ========================================== []")
 print("")
 
@@ -77,16 +91,49 @@ print("")
 cond = startgame()
 currstate = "q8"
 printState(cond[0],cond[1],cond[2])
-print(currstate)
 
 # * Start Loop
-while (not(menang(cond[0],cond[1],cond[2])) or not(kalah(cond[0],cond[1],cond[2]))):
+while (not(menang(cond[0],cond[1],cond[2])) and not(kalah(cond[0],cond[1],cond[2]))):
     print("")
-    aksi = str(input("Masukkan aksi yang akan dilakukan: "))
-    #newstate = readAction(aksi)
-    #changeState(currstate,newstate)
-    cond = changeState(cond,currstate,"q32")
+    aksi = str(input("Mau ngapain bray?? : "))
+    newstate = readAction(aksi,currstate)
+    cond = changeState(cond,currstate,newstate)
+    currstate = newstate
+    print("")
     printState(cond[0],cond[1],cond[2])
 
+# * Game Selesai
+if (menang(cond[0],cond[1],cond[2])):
+    print("")
+    print(" __     ______  _    _  __          _______ _   _  ")
+    print(" \ \   / / __ \| |  | | \ \        / /_   _| \ | | ")
+    print("  \ \_/ / |  | | |  | |  \ \  /\  / /  | | |  \| | ")
+    print("   \   /| |  | | |  | |   \ \/  \/ /   | | | . ` | ")
+    print("    | | | |__| | |__| |    \  /\  /   _| |_| |\  | ")
+    print("    |_|  \____/ \____/      \/  \/   |_____|_| \_| ")
+    print("[]================================================[]")
+    print("|  Pesan Sponsor:                                  |")
+    print("|                     Sehat bet idup lo brayyy :)  |")
+    print("[]================================================[]")
+    
+if (kalah(cond[0],cond[1],cond[2])):
+    print("")
+    print(" __   _______ _   _   _     _____ _____ _____  ")
+    print(" \ \ / /  _  | | | | | |   |  _  /  ___|  ___|")
+    print("  \ V /| | | | | | | | |   | | | \ `--.| |__   ")
+    print("   \ / | | | | | | | | |   | | | |`--. \  __|  ")
+    print("   | | \ \_/ / |_| | | |___\ \_/ /\__/ / |___  ")
+    print("   \_/  \___/ \___/  \_____/\___/\____/\____/ ")
+    print("[]============================================[]")
+    print("||  Pesan Sponsor:                            ||")
+    print("||            Telah berpulang seorang sim :(  ||")
+    print("[]============================================[]")
+
+print("")
+print("")
+print('[]---------------------------------------------[]');
+print('||    Terima kasih telah memainkan             ||');
+print("||             Simulasi Kehidupan Sederhana    ||")
+print('[]---------------------------------------------[]');
+print;
  
-#while (not(menang()) and not(kalah())) :
