@@ -28,6 +28,9 @@ table = pd.read_csv("Transition Table.csv")
 hyg = 0
 ene = 10
 fun = 0
+aksi = ''
+state = ''
+currstate = ''
 
 # $ Fungsi-Fungsi
 def startgame():
@@ -52,12 +55,17 @@ def printState(hygiene,energy,fun):
     print(" \-----------------/ ")
 
 def menang(hygiene,energy,fun):
-    if
+    return(hygiene == 15 and energy == 15 and fun == 15)
     
 def kalah(hygiene,energy,fun):
-    if
+    return(hygiene == 0 and energy == 0 and fun == 0)
 
-def readState(hygiene,energy,fun):
+def readAction(aksi,currstate):
+    idx = int(table[table['Current State']==currstate].index[0]) 
+    newstate = table.at[idx, aksi]
+    return newstate
+
+
 
 
 
