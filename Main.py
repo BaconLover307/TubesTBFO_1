@@ -47,7 +47,7 @@ def printState(hygiene,energy,fun):
     if (fun<10):
         print(" | Fun     = " + str(fun) + "     | ")
     else:
-        print(" | Fun     = " + str(fun) + "       ")
+        print(" | Fun     = " + str(fun) + "    | ")
     print(" \-----------------/ ")
 
 def menang(hygiene,energy,fun):
@@ -112,8 +112,8 @@ if (menang(cond[0],cond[1],cond[2])):
     print("    | | | |__| | |__| |    \  /\  /   _| |_| |\  | ")
     print("    |_|  \____/ \____/      \/  \/   |_____|_| \_| ")
     print("[]================================================[]")
-    print("|  Pesan Sponsor:                                  |")
-    print("|                     Sehat bet idup lo brayyy :)  |")
+    print("||  Pesan Sponsor:                                ||")
+    print("||                   Sehat bet idup lo brayyy :)  ||")
     print("[]================================================[]")
     
 if (kalah(cond[0],cond[1],cond[2])):
@@ -135,5 +135,4 @@ print('[]---------------------------------------------[]');
 print('||    Terima kasih telah memainkan             ||');
 print("||             Simulasi Kehidupan Sederhana    ||")
 print('[]---------------------------------------------[]');
-print;
  
