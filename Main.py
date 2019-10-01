@@ -56,6 +56,17 @@ def menang(hygiene,energy,fun):
 def kalah(hygiene,energy,fun):
     return (hygiene == 0) and (energy == 0) and (fun == 0)
 
+def readAction(aksi,currstate):
+    try:
+        idx = int(table[table['Current State']==currstate].index[0]) 
+        newstate = table.at[idx, aksi]
+        return newstate
+    except:
+        print("Kamu ngapain mas!? Gabisa ngetik ya?!")
+        return currstate
+    finally:
+        pass
+
 def changeState(condition,awal,akhir):
     if (awal == akhir):
         print("Aksi tidak valid!")
@@ -68,22 +79,43 @@ def changeState(condition,awal,akhir):
         condition[2] = table.at[idx,"Fun"]
         return condition
 
-def readAction(aksi,currstate):
-    try:
-        idx = int(table[table['Current State']==currstate].index[0]) 
-        newstate = table.at[idx, aksi]
-        return newstate
-    except:
-        print("Kamu ngapain mas!? Gabisa ngetik ya?!")
-        return currstate
-    finally:
-        pass
-
 # $ ====================== MAIN PROGRAM ======================
 # * Welcome
 print("[] ========================================== []")
 print("||    Selamat datang di                       ||")
 print("||            Simulasi Kehidupan Sederhana    ||")
+print("[] ========================================== []")
+print("||                 List Aksi                  ||")
+print("[] ========================================== []")
+print("||  1. Tidur Siang .................. E + 10  ||")
+print("||  2. Tidur Malam .................. E + 15  ||")
+print("||  3. Makan Hamburger .............. E +  5  ||")
+print("||  4. Makan Pizza .................. E + 10  ||")
+print("||  5. Makan Steak and Beans ........ E + 15  ||")
+print("||  6. Minum Air .................... H -  5  ||")
+print("||  7. Minum Kopi ................... H -  5  ||")
+print("||                                    E +  5  ||")
+print("||  8. Minum Jus .................... H -  5  ||")
+print("||                                    E + 10  ||")
+print("||  9. Buang Air Kecil .............. H +  5  ||")
+print("|| 10. Buang Air Besar .............. H + 10  ||")
+print("||                                    E -  5  ||")
+print("|| 11. Bersosialisasi ke Kafe ....... H -  5  ||")
+print("||                                    E - 10  ||")
+print("||                                    F + 15  ||")
+print("|| 12. Bermain Media Sosial ......... E - 10  ||")
+print("||                                    F + 10  ||")
+print("|| 13. Bermain Komputer ............. E - 10  ||")
+print("||                                    F + 15  ||")
+print("|| 14. Mandi ........................ H + 15  ||")
+print("||                                    E -  5  ||")
+print("|| 15. Cuci Tangan .................. H +  5  ||")
+print("|| 16. Mendengarkan Musik di Radio .. E -  5  ||")
+print("||                                    F + 10  ||")
+print("|| 17. Membaca Koran ................ E -  5  ||")
+print("||                                    F +  5  ||")
+print("|| 18. Membaca Novel ................ E -  5  ||")
+print("||                                    F + 10  ||")
 print("[] ========================================== []")
 print("")
 
