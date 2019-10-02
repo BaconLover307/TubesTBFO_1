@@ -1,8 +1,8 @@
 '''
 Kelompok King Kong Bray
 Anggota kelompok:
-- Gregorius Jovan Kresnadi    - 13518135
 - Radhinansyah Hemsa Ghaida   - 13518087
+- Gregorius Jovan Kresnadi    - 13518135
 
 Nama program : Simulator Kehidupan Sederhana
 
